@@ -1,26 +1,23 @@
 package com.anith;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ConvertToJson {
-  public void convert(String csvFileName, String jsonFileName) {
 
-    //Read CSV File
-    List<List<String>> read = new ArrayList<>();
+  public void convert(String csvFileName, String jsonFileName) {
     try {
       BufferedReader br = new BufferedReader(new FileReader(csvFileName));
       BufferedWriter writer = new BufferedWriter(new FileWriter(jsonFileName));
 
-      String line;
-
       String[] header = br.readLine().split(",");
-      System.out.println(header);
-
+      String line;
       while ((line = br.readLine()) != null) {
         String[] columns = line.split(",");
         String json = "{";
@@ -46,10 +43,8 @@ public class ConvertToJson {
     Date dobDate = new SimpleDateFormat("dd-MM-yyyy").parse(dob);
     Calendar cal = Calendar.getInstance();
     long timeDiff = cal.getTime().getTime() - dobDate.getTime();
-    long secondsForYear = (60 * 60 * 24 * 365);
-    return (int) (timeDiff / secondsForYear);
+    long diff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
+    return (int) (diff / 365);
   }
-  //Convert CSV File To Json File
-
 }
 
