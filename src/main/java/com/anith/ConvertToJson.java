@@ -44,6 +44,9 @@ public class ConvertToJson {
     Calendar cal = Calendar.getInstance();
     long timeDiff = cal.getTime().getTime() - dobDate.getTime();
     long diff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
+
+    System.out.println(diff);
+
     return (int) (diff / 365);
   }
 }

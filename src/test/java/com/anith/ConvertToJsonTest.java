@@ -1,13 +1,10 @@
 package com.anith;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class ConvertToJsonTest {
@@ -19,6 +16,6 @@ public class ConvertToJsonTest {
     Date currDate = simpleDateFormat.parse("31-12-2023");
     long timeDiff = currDate.getTime() - dobDate.getTime();
     long diff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-    Assert.assertEquals(24, diff/365);
+    Assert.assertEquals(24, diff / 365);
   }
 }
